@@ -1,2 +1,5 @@
 # Minesweeper
-## by Yuto Yazawa
+by Yuto Yazawa
+
+Needs numpy and pygame to run.  
+Just execute `$python main.py`
