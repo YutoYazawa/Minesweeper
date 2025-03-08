@@ -12,3 +12,6 @@ def on_area(left_up_coord,right_down_coord,click_coord):
 def draw_flag(screen, coord, cell_size):
     pygame.draw.line(screen,FLAG,(coord[0]+4,coord[1]+4),(coord[0]+4,coord[1]+cell_size[1]-4))
     pygame.draw.polygon(screen,FLAG,[(coord[0]+4,coord[1]+4),(coord[0]+4+cell_size[1]/4*3,coord[1]+cell_size[1]/4),(coord[0]+4,coord[1]+cell_size[1]/2)])
+
+def get_coord_from_click(click_coord, cell_size, OFFSET):
+    return ((click_coord[0]-OFFSET)//cell_size[0],(click_coord[1]-OFFSET)//cell_size[1])

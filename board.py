@@ -71,6 +71,3 @@ class Board(): # ボードを定義するクラス
             if self.board_list[a[0]][a[1]]==1:
                 num+=1
         return num
-    
-    def get_coord_from_click(self, click_coord):
-        return ((click_coord[0]-self.OFFSET)//self.cell_size[0],(click_coord[1]-self.OFFSET)//self.cell_size[1])

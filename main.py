@@ -5,7 +5,7 @@ from pygame.locals import *
 import menu
 import board
 from colors import *
-from lib import on_area
+from lib import on_area, get_coord_from_click
 
 
 # Consts
@@ -48,11 +48,11 @@ def main():
                     if on_area((OFFSET,OFFSET),(OFFSET+BOARD_SIZE[0]*CELL_SIZE[0],OFFSET+BOARD_SIZE[0]*CELL_SIZE[0]),event.pos):
                         match game_stat:
                             case 0:
-                                myboard.generate(myboard.get_coord_from_click(event.pos))
-                                myboard.click(myboard.get_coord_from_click(event.pos))
+                                myboard.generate(get_coord_from_click(click_coord=event.pos, cell_size=CELL_SIZE, OFFSET=OFFSET))
+                                myboard.click(get_coord_from_click(click_coord=event.pos, cell_size=CELL_SIZE, OFFSET=OFFSET))
                                 game_stat=1
                             case 1:
-                                ret=myboard.click(myboard.get_coord_from_click(event.pos))
+                                ret=myboard.click(get_coord_from_click(click_coord=event.pos, cell_size=CELL_SIZE, OFFSET=OFFSET))
                                 if ret==-1:
                                     game_stat=2
                                 elif ret==0xff:
@@ -63,7 +63,7 @@ def main():
                     if on_area((OFFSET,OFFSET),(OFFSET+BOARD_SIZE[0]*CELL_SIZE[0],OFFSET+BOARD_SIZE[0]*CELL_SIZE[0]),event.pos):
                         match game_stat:
                             case 1:
-                                ret=myboard.toggle_flag(myboard.get_coord_from_click(event.pos))
+                                ret=myboard.toggle_flag(get_coord_from_click(click_coord=event.pos, cell_size=CELL_SIZE, OFFSET=OFFSET))
                                 if ret==0xff:
                                     game_stat=3
 
