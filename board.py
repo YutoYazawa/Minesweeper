@@ -10,11 +10,14 @@ class Board(): # ボードを定義するクラス
         self.board_size=board_size
         self.cell_size=cell_size
         self.bomb_num=bomb_num
-        self.board_list=[[0 for i in range(board_size[1])]for j in range(board_size[0])]
-        self.display_list=[[False for i in range(board_size[1])]for j in range(board_size[0])]
-        #self.display_list=[[True for i in range(board_size[1])]for j in range(board_size[0])]
-        self.flag_list=[[False for i in range(board_size[1])]for j in range(board_size[0])]
+        self.clear()
         self.num_font=pygame.font.SysFont(None,cell_size[0]-4)
+    
+    def clear(self):
+        self.board_list=[[0 for i in range(self.board_size[1])]for j in range(self.board_size[0])]
+        self.display_list=[[False for i in range(self.board_size[1])]for j in range(self.board_size[0])]
+        #self.display_list=[[True for i in range(self.board_size[1])]for j in range(self.board_size[0])]
+        self.flag_list=[[False for i in range(self.board_size[1])]for j in range(self.board_size[0])]
     
     def toggle_flag(self, coord):
         if not self.display_list[coord[0]][coord[1]]:
