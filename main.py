@@ -10,9 +10,9 @@ from lib import on_area, get_coord_from_click
 
 # Consts
 SCREEN_SIZE = (1200,800)
-BOARD_SIZE = (20,10)
+BOARD_SIZE = (20,12)
 CELL_SIZE = (48,48)
-BOMB_NUM = 100
+BOMB_NUM = 36
 OFFSET = 20
 
 def main():
@@ -26,10 +26,12 @@ def main():
     game_stat=0
     
     myboard = board.Board(board_size=BOARD_SIZE,cell_size=CELL_SIZE, bomb_num=BOMB_NUM, offset=OFFSET)
+    mymenu = menu.Menu(screen_size=SCREEN_SIZE, OFFSET=OFFSET)
     while True: # メインループ
         screen.fill(BACKGROUND)
         
         myboard.draw(screen)
+        mymenu.draw(screen=screen)
         
         if game_stat==2:
             screen.blit(pygame.font.SysFont("Zen Maru Gothic Black",size=64).render("[DEBUG]\nGameOver",True,FLAG),(SCREEN_SIZE[0]/2-400,SCREEN_SIZE[1]/2-64))
@@ -44,6 +46,9 @@ def main():
                 pygame.quit()
                 sys.exit()
             if event.type==MOUSEBUTTONDOWN:
+                if mymenu.get_button(0).collidepoint(event.pos):
+                    myboard.clear()
+                    game_stat=0
                 if event.button==1:
                     if on_area((OFFSET,OFFSET),(OFFSET+BOARD_SIZE[0]*CELL_SIZE[0],OFFSET+BOARD_SIZE[0]*CELL_SIZE[0]),event.pos):
                         match game_stat:
