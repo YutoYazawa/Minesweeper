@@ -10,10 +10,10 @@ from lib import on_area, get_coord_from_click
 
 # Consts
 SCREEN_SIZE = (1200,800)
-BOARD_SIZE = (20,12)
+BOARD_SIZE = (12,12)
 CELL_SIZE = (48,48)
-BOMB_NUM = 36
-OFFSET = 20
+BOMB_NUM = 130
+OFFSET = 24
 
 def main():
     # Pygameの初期化
