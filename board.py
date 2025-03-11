@@ -17,15 +17,14 @@ class Board(): # ボードを定義するクラス
     def clear(self):
         self.board_list=[[0 for i in range(self.board_size[1])]for j in range(self.board_size[0])]
         self.display_list=[[False for i in range(self.board_size[1])]for j in range(self.board_size[0])]
-        #self.display_list=[[True for i in range(self.board_size[1])]for j in range(self.board_size[0])]
-        self.flag_list=[[False for i in range(self.board_size[1])]for j in range(self.board_size[0])]
+        self.flag_list=[[False for i in range(self.board_size[1])]for j in range(self.board_size[0])] #self.display_list=[[True for i in range(self.board_size[1])]for j in range(self.board_size[0])]
     
     def toggle_flag(self, coord):
         if (not self.display_list[coord[0]][coord[1]]) and self.flag_num<self.bomb_num:
-        	if self.flag_list[coord[0]][coord[1]]:
-        		self.flag_num-=1
-        	else:
-        		self.flag_num+=1
+            if (self.flag_list[coord[0]][coord[1]]):
+                self.flag_num-=1
+            else:
+                self.flag_num+=1
             self.flag_list[coord[0]][coord[1]]=not self.flag_list[coord[0]][coord[1]]
             if [[1 if j else 0 for j in i] for i in self.display_list]==[[0 if j else 1 for j in i] for i in self.flag_list]: # もし判明してる安全な場所 == !フラグが建てられてる場所なら
                 return 0xff
